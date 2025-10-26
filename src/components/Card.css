@@ -9,7 +9,7 @@
   padding: 10px;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; /* for hover */
   display: flex;
   align-items: center;
   justify-content: center;

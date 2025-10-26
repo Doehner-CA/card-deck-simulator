@@ -20,7 +20,7 @@ function Deck({ remainingCards, onDeckClick }) {
     );
   }
 
-  // otherwise, show clickable deck back
+  // otherwise, render/show clickable deck back, onDeckClick pass to onClick event handler which calls handleDeckClick
   return (
     <div
       className="deck-container clickable"

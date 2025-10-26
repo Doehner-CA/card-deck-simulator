@@ -3,6 +3,7 @@ import './App.css'
 import { createDeck } from './utils/deckUtils'
 import Deck from './components/Deck'
 import Card from './components/Card'
+import Controls from './components/Controls'
 
 function App() {
   //State section
@@ -53,12 +54,12 @@ function App() {
           onDeckClick={handleDeckClick}
         />
       </div>
-
+      
       {/* Dealt Cards Section */}
       <div className="dealt-cards d-flex flex-wrap gap-3 justify-content-center">
         {dealtCards.map((card, index) => (
           <Card
-            key={card.id}
+            key={card.id} // react attribute
             suit={card.suit}
             value={card.value}
             isPicked={index === pickedCardIndex}
