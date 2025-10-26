@@ -43,6 +43,87 @@ function App() {
     setDealtCards(newDealtCards);
   };
 
+  /**
+   * Deal N cards from the deck
+   * Returns currently dealt cards to deck, then deals N random cards
+   */
+  const dealCards = (numCards) => {
+    // Return all dealt cards back to the deck
+    const fullDeck = [...deck, ...dealtCards];
+
+    // Check if we have enough cards
+    if (fullDeck.length < numCards) {
+      alert(`Not enough cards! Only ${fullDeck.length} cards available.`);
+      return;
+    }
+
+    // Randomly select N cards
+    const newDealtCards = [];
+    const newDeck = [...fullDeck];
+
+    for (let i = 0; i < numCards; i++) {
+      const randomIndex = Math.floor(Math.random() * newDeck.length);
+      newDealtCards.push(newDeck[randomIndex]);
+      newDeck.splice(randomIndex, 1); // Remove selected card
+    }
+
+    // Update state
+    setDeck(newDeck);
+    setDealtCards(newDealtCards);
+    setPickedCardIndex(-1); // Reset picked card
+  };
+
+  /**
+   * Deal 5 cards
+   */
+  const handleDeal5 = () => {
+    dealCards(5);
+  };
+
+  /**
+   * Deal 7 cards
+   */
+  const handleDeal7 = () => {
+    dealCards(7);
+  };
+
+  /**
+   * Reset - return all dealt cards to deck
+   */
+  const handleReset = () => {
+    // Combine deck and dealt cards
+    const fullDeck = [...deck, ...dealtCards];
+
+    // Update state
+    setDeck(fullDeck);
+    setDealtCards([]);
+    setPickedCardIndex(-1);
+  };
+
+  /**
+   * Toss - delete the picked card (Phase 4)
+   */
+  const handleToss = () => {
+    // TODO: Implement in Phase 4
+    console.log('Toss');
+  };
+
+  /**
+   * Regroup - shuffle dealt cards (Phase 5)
+   */
+  const handleRegroup = () => {
+    // TODO: Implement in Phase 5
+    console.log('Regroup');
+  };
+
+  /**
+   * Wildcard - add a random new card (Phase 5)
+   */
+  const handleWildcard = () => {
+    // TODO: Implement in Phase 5
+    console.log('Wildcard');
+  };
+
   return (
     <div className="container mt-4">
       <h1 className="text-center mb-4">Card Deck App</h1>
@@ -54,7 +135,17 @@ function App() {
           onDeckClick={handleDeckClick}
         />
       </div>
-      
+
+      {/* Controls Section */}
+      <Controls
+        onDeal5={handleDeal5}
+        onDeal7={handleDeal7}
+        onReset={handleReset}
+        onToss={handleToss}
+        onRegroup={handleRegroup}
+        onWildcard={handleWildcard}
+      />
+
       {/* Dealt Cards Section */}
       <div className="dealt-cards d-flex flex-wrap gap-3 justify-content-center">
         {dealtCards.map((card, index) => (
