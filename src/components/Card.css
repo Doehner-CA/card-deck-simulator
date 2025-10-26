@@ -1,0 +1,51 @@
+/* Card Component Styles */
+
+.playing-card {
+  width: 100px;
+  height: 140px;
+  background-color: white;
+  border: 2px solid #333;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.playing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-value {
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.card-suit {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+/* Picked/Highlighted card style */
+.card-picked {
+  border: 4px solid #0d6efd;
+  border-color: #0d6efd;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(13, 110, 253, 0.5);
+}
+
+.card-picked:hover {
+  transform: scale(1.05) translateY(-5px);
+}
