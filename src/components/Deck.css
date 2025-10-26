@@ -1,0 +1,74 @@
+/* Deck Component Styles */
+
+.deck-container {
+  width: 100px;
+  height: 140px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Clickable deck style */
+.deck-container.clickable {
+  cursor: pointer;
+}
+
+.deck-container.clickable:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Deck back design */
+.deck-back {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: 2px solid #333;
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Decorative pattern on card back */
+.deck-pattern {
+  width: 60px;
+  height: 60px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Card count text */
+.card-count {
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin: 0;
+  position: absolute;
+  bottom: 8px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Empty deck style */
+.deck-container.empty {
+  background-color: #f8f9fa;
+  border: 2px dashed #6c757d;
+  color: #6c757d;
+  font-style: italic;
+}
+
+.deck-container.empty p {
+  margin: 0;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 10px;
+}
