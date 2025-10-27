@@ -8,8 +8,7 @@ import Controls from './components/Controls'
 function App() {
   //State section
   // deck contains cards not yet dealt
-  const [deck, setDeck] = useState(createDeck());//useState returns a pair [currentState, setStateFunction],array destructuring, state is a list of components we wanna track/render
-
+  const [deck, setDeck] = useState(createDeck());//useState returns a pair [currentState, setStateFunction],array destructuring, React compares references
   // dealtCards contains cards currently displayed
   const [dealtCards, setDealtCards] = useState([]);
 
@@ -101,11 +100,51 @@ function App() {
   };
 
   /**
-   * Toss - delete the picked card (Phase 4)
+   * Handle clicking a card in the dealt cards list
+   * Feature: Pick a card (highlight it), unpick if already picked, or swap with picked card
+   */
+  const handleCardClick = (index) => {
+    // If clicking the same card that's already picked, unpick it
+    if (index === pickedCardIndex) {
+      setPickedCardIndex(-1);
+    }
+    // If a different card is already picked, swap them
+    else if (pickedCardIndex !== -1) {
+      // Create a copy of dealt cards array
+      const newDealtCards = [...dealtCards];
+
+      // Swap the cards at the two indices
+      const temp = newDealtCards[index];
+      newDealtCards[index] = newDealtCards[pickedCardIndex];
+      newDealtCards[pickedCardIndex] = temp;
+
+      // Update state with swapped cards
+      setDealtCards(newDealtCards);
+
+      // Unpick the card after swapping
+      setPickedCardIndex(-1);
+    }
+    // No card is currently picked, so pick this one
+    else {
+      setPickedCardIndex(index);
+    }
+  };
+
+  /**
+   * Toss - delete the picked card permanently (not returned to deck)
    */
   const handleToss = () => {
-    // TODO: Implement in Phase 4
-    console.log('Toss');
+    // Only toss if a card is currently picked
+    if (pickedCardIndex === -1) {
+      return; // No card picked, do nothing
+    }
+
+    // Remove the card at pickedCardIndex from dealtCards
+    const newDealtCards = dealtCards.filter((_, index) => index !== pickedCardIndex);
+
+    // Update state
+    setDealtCards(newDealtCards);
+    setPickedCardIndex(-1);
   };
 
   /**
@@ -154,7 +193,7 @@ function App() {
             suit={card.suit}
             value={card.value}
             isPicked={index === pickedCardIndex}
-            onClick={() => {/* Will implement card click later */}}
+            onClick={() => handleCardClick(index)}
           />
         ))}
       </div>
