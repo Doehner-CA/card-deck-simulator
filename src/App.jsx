@@ -100,8 +100,7 @@ function App() {
   };
 
   /**
-   * Handle clicking a card in the dealt cards list
-   * Feature: Pick a card (highlight it), unpick if already picked, or swap with picked card
+   * Handle clicking (highlighting) a card and swapping between picked cards in the dealt cards list
    */
   const handleCardClick = (index) => {
     // If clicking the same card that's already picked, unpick it
@@ -136,7 +135,7 @@ function App() {
   const handleToss = () => {
     // Only toss if a card is currently picked
     if (pickedCardIndex === -1) {
-      return; // No card picked, do nothing
+      return;
     }
 
     // Remove the card at pickedCardIndex from dealtCards
@@ -148,11 +147,32 @@ function App() {
   };
 
   /**
-   * Regroup - shuffle dealt cards (Phase 5)
+   * Regroup - shuffle dealt cards randomly
+   * Uses Fisher-Yates shuffle algorithm. Source: https://www.geeksforgeeks.org/dsa/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/
    */
   const handleRegroup = () => {
-    // TODO: Implement in Phase 5
-    console.log('Regroup');
+    // Only shuffle if there are cards
+    if (dealtCards.length === 0) {
+      return;
+    }
+
+    const shuffledCards = [...dealtCards];
+
+    // Fisher-Yates shuffle algorithm
+    for (let i = shuffledCards.length - 1; i > 0; i--) {
+      // Pick a random index from 0 to i
+      const randomIndex = Math.floor(Math.random() * (i + 1));
+
+      // Swap elements at i and randomIndex
+      const temp = shuffledCards[i];
+      shuffledCards[i] = shuffledCards[randomIndex];
+      shuffledCards[randomIndex] = temp;
+    }
+
+    // Update state with shuffled cards
+    setDealtCards(shuffledCards);
+    // Reset picked card since positions have changed
+    setPickedCardIndex(-1);
   };
 
   /**
