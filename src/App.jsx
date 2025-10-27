@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import './App.css'
-import { createDeck } from './utils/deckUtils'
+import { createDeck, SUITS, VALUES } from './utils/deckUtils'
 import Deck from './components/Deck'
 import Card from './components/Card'
 import Controls from './components/Controls'
-
+//The parent component manages all states and childs
 function App() {
-  //State section
+  //State section (hooks)
   // deck contains cards not yet dealt
   const [deck, setDeck] = useState(createDeck());//useState returns a pair [currentState, setStateFunction],array destructuring, React compares references
   // dealtCards contains cards currently displayed
@@ -176,11 +176,28 @@ function App() {
   };
 
   /**
-   * Wildcard - add a random new card (Phase 5)
+   * Wildcard - create and add a random new card
+   * Card can have same suit/value as existing cards (duplicates allowed)
    */
   const handleWildcard = () => {
-    // TODO: Implement in Phase 5
-    console.log('Wildcard');
+    // Randomly select a suit
+    const randomSuit = SUITS[Math.floor(Math.random() * SUITS.length)];
+    // Randomly select a value
+    const randomValue = VALUES[Math.floor(Math.random() * VALUES.length)];
+
+    // Create new wildcard with unique ID (includes timestamp to allow duplicates). Source: https://www.geeksforgeeks.org/reactjs/how-to-create-an-unique-id-in-reactjs/
+    const wildcardCard = {
+      suit: randomSuit,
+      value: randomValue,
+      id: `${randomSuit}-${randomValue}-${Date.now()}-${Math.random()}`
+    };
+
+    // Add wildcard to dealt cards
+    const newDealtCards = [...dealtCards, wildcardCard];
+
+    // Update state and reset pickedcard
+    setDealtCards(newDealtCards);
+    setPickedCardIndex(-1);
   };
 
   return (
