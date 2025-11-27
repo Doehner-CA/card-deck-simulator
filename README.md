@@ -38,3 +38,6 @@ npm run build
 - `components/Deck.jsx` - Deck display and click handler
 - `components/Controls.jsx` - Button controls
 - `utils/deckUtils.js` - Helper functions for deck operations
+
+## Screenshot
+![Screenshot](./CardDeckAppScreenshot.png)
