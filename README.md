@@ -1,16 +1,40 @@
-# React + Vite
+# Card Deck Simulator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based card deck manipulation application demonstrating fundamental React concepts including components, props, state management, and event handling.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Draw cards individually from a 52-card deck
+- Deal 5 or 7 cards at once
+- Pick and swap cards in hand
+- Toss cards to remove them permanently
+- Regroup (shuffle) current cards
+- Add wildcard (duplicate) cards
+- Reset deck to start over
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19.1.1
+- Vite 7.1.7
+- CSS for styling
 
-## Expanding the ESLint configuration
+## Running the Application
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+## Project Structure
+
+- `App.jsx` - Main component managing state and logic
+- `components/Card.jsx` - Stateless card display component
+- `components/Deck.jsx` - Deck display and click handler
+- `components/Controls.jsx` - Button controls
+- `utils/deckUtils.js` - Helper functions for deck operations

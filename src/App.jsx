@@ -1,3 +1,4 @@
+//StAuth10244: I Xiaodong Cao, 000911762 certify that this material is my original work. No other person's work has been used without due acknowledgement. I have not made my work available to anyone else
 import { useState } from 'react'
 import './App.css'
 import { createDeck, SUITS, VALUES } from './utils/deckUtils'
@@ -14,6 +15,9 @@ function App() {
 
   // pickedCardIndex tracks which card is currently picked (-1 = none)
   const [pickedCardIndex, setPickedCardIndex] = useState(-1);
+
+  const [dealCount, setDealCount] = useState(0);
+  //const counter = useRef(0);
 
   //Component Logic, state management
   /**
@@ -66,10 +70,13 @@ function App() {
       newDeck.splice(randomIndex, 1); // Remove selected card
     }
 
+    //counter.current += 1;
+
     // Update state
     setDeck(newDeck);
     setDealtCards(newDealtCards);
     setPickedCardIndex(-1); // Reset picked card
+    setDealCount((c)=> c+1);
   };
 
   /**
@@ -92,11 +99,12 @@ function App() {
   const handleReset = () => {
     // Combine deck and dealt cards
     const fullDeck = [...deck, ...dealtCards];
-
+    //counter.current = 0;
     // Update state
     setDeck(fullDeck);
     setDealtCards([]);
     setPickedCardIndex(-1);
+    setDealCount((c) => c = 0);
   };
 
   /**
@@ -203,7 +211,7 @@ function App() {
   return (
     <div className="container mt-4">
       <h1 className="text-center mb-4">Card Deck App</h1>
-
+      <div className="text-center mb-4"><strong>Deals:</strong> {dealCount}</div>
       {/* Deck Section */}
       <div className="d-flex justify-content-center mb-4">
         <Deck
